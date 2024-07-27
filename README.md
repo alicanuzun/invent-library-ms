@@ -8,6 +8,7 @@ This project is a simple library management system built with Express.js and Typ
 - [Installation](#installation)
 - [Database Setup](#database-setup)
 - [Redis Setup](#redis-setup)
+- [Environment Setup](#environment-setup)
 - [Running the Project](#running-the-project)
 
 ## Prerequisites
@@ -132,7 +133,21 @@ Type `ping` and press Enter. You should get a `PONG` response, indicating that t
     ```sh
     npm install redis
     ```
+## Environment Setup
 
+1. Create a `.env` file in the root directory of the project. This file will store your environment variables.
+
+2. Add the following environment variables to the `.env` file:
+
+    ```
+    PORT=3000
+    DATABASE_URL=postgres://username:password@localhost:5432/mydatabase
+    REDIS_URL=redis://localhost:6379
+    ```
+
+    - `PORT`: The port number for your Express.js server.
+    - `DATABASE_URL`: The connection string for your PostgreSQL database.
+    - `REDIS_URL`: The URL for your Redis server.
 
 ## Running the Project
 
