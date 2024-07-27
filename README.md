@@ -8,7 +8,6 @@ This project is a simple library management system built with Express.js and Typ
 - [Installation](#installation)
 - [Database Setup](#database-setup)
 - [Redis Setup](#redis-setup)
-- [Endpoints](#endpoints)
 - [Running the Project](#running-the-project)
 
 ## Prerequisites
