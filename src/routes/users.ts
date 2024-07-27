@@ -20,7 +20,7 @@ router.get('/', async (req: Request, res: Response) => {
       success: true,
       data: users,
     };
-    res.status(201).json(response);
+    res.status(200).json(response);
   } catch (error: any) {
     const errorResponse: ErrorResponse = {
       success: false,

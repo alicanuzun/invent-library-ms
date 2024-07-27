@@ -30,7 +30,7 @@ const getBookInfo = async(id:number):Promise<any> => {
             success: true,
             data: bookResponse,
           };
-          return {status:201,data:response}
+          return {status:200,data:response}
         } else {
           const errorResponse: ErrorResponse = {
             success: false,
