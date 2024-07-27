@@ -141,12 +141,10 @@ Type `ping` and press Enter. You should get a `PONG` response, indicating that t
 
     ```
     PORT=3000
-    DATABASE_URL=postgres://username:password@localhost:5432/mydatabase
     REDIS_URL=redis://localhost:6379
     ```
 
     - `PORT`: The port number for your Express.js server.
-    - `DATABASE_URL`: The connection string for your PostgreSQL database.
     - `REDIS_URL`: The URL for your Redis server.
 
 ## Running the Project
