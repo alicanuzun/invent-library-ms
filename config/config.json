@@ -1,9 +1,23 @@
 {
   "development": {
-    "username": "<username",
-    "password": "<password>",
-    "database": "<database>",
-    "host": "<host>",
+    "username": "postgres",
+    "password": "invent_ms",
+    "database": "alicanuzun",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "invent_ms",
+    "database": "alicanuzun",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "invent_ms",
+    "database": "alicanuzun",
+    "host": "localhost",
     "dialect": "postgres"
   }
 }

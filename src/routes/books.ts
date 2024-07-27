@@ -4,6 +4,9 @@ import { DataResponse, ErrorResponse } from '../interfaces/responses';
 import { Borrow } from '../models/borrow';
 import { bookController } from '../controllers/BookController';
 import redisClient from '../config/redis';
+import getBookInfoSchema from '../validators/getBookValidator';
+import { validationResult } from 'express-validator';
+import bookCreateSchema from '../validators/bookCreateValidator';
 
 const router = Router();
 
@@ -26,8 +29,18 @@ router.get('/', async (req: Request, res: Response) => {
 });
 
 // Get a book by ID
-router.get('/:id', async (req: Request, res: Response) => {
+router.get('/:id', getBookInfoSchema, async (req: Request, res: Response) => {
   try {
+    const result = validationResult(req);
+    console.error(result)
+    
+    if (!result.isEmpty()) {
+      const errorResponse: ErrorResponse = {
+        success: false,
+        error: result.array().map(r => r.msg).join(", "),
+      }
+      return res.status(400).json(errorResponse);
+    }
     const bookId = req.params.id
     const cacheKey = `book:${bookId}`;
     const cachedData = await redisClient.get(cacheKey);
@@ -51,8 +64,19 @@ router.get('/:id', async (req: Request, res: Response) => {
 });
 
 // Create a new book
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', bookCreateSchema, async (req: Request, res: Response) => {
   try {
+    const result = validationResult(req);
+    console.error(result)
+    
+    if (!result.isEmpty()) {
+      const errorResponse: ErrorResponse = {
+        success: false,
+        error: result.array().map(r => r.msg).join(", "),
+      }
+      return res.status(400).json(errorResponse);
+    }
+    
     const { name } = req.body;
 
     if (!name) {
