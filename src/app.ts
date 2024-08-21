@@ -1,4 +1,4 @@
-import express, {Application} from 'express';
+import express, { Application, Request, Response, NextFunction } from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
@@ -15,5 +15,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
 app.use('/books', booksRouter);
+// Hata yönetimi middleware'i
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    console.error('Error:', err.message);
+    if (err.name === 'SyntaxError' && err.message.includes('JSON')) {
+        res.status(400).json({
+            data: null,
+            error: 'Invalid JSON format'
+        });
+    } else {
+        res.status(500).json({
+            data: null,
+            error: 'Internal Server Error'
+        });
+    }
+});
 
 export default app;
